@@ -1,3 +1,5 @@
+// models/Post.js
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -5,17 +7,18 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   content: {
     type: String,
-    required: true,
+    required: false,
   },
   author: {
-    type: Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
-    required: true,
+    type: String,
+    // Schema.Types.ObjectId,
+    // ref: 'User', // Reference to the User model
+    required: false,
   },
   createdAt: {
     type: Date,
