@@ -1,5 +1,5 @@
 // server.js
-
+require('dotenv').config(); // Ensure environment variables are loaded
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');

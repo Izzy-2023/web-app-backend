@@ -5,10 +5,16 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config(); // Load environment variables
+
+// Utility function for generating JWT tokens
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+};
 
 // Generic user route
 router.get('/', (req, res) => {
-    res.json({ message: 'User route' });
+  res.json({ message: 'User route' });
 });
 
 // Create a new user
@@ -45,7 +51,7 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
     // Generate a JWT token
-    const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+    const token = generateToken(user._id);
 
     res.status(200).json({ token }); // Send the token as JSON
   } catch (err) {

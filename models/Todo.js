@@ -16,8 +16,14 @@ const todoSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User', // Assuming you have a User model
+    required: true,
+  },
 });
 
 const Todo = mongoose.model('Todo', todoSchema);
 module.exports = Todo;
+
 
