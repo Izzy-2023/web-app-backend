@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
-const postRoutes = require('./routes/postRoutes');
+const todoRoutes = require('./routes/todoRoutes');
 require('./db'); // Import db.js to establish the MongoDB connection
 
 const app = express();
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('hello world');
 });
 app.use('/api/users', userRoutes);
-app.use('/api/posts', postRoutes);
+app.use('/api/todos', todoRoutes);
 
 // Middleware to handle 404 errors (must be after all route handlers)
 app.use((req, res, next) => {
